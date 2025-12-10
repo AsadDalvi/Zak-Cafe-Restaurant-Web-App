@@ -1,0 +1,55 @@
+{% extends 'htmls/base.html' %}
+
+{% block content %}
+<div class="cart-container">
+    <h2 class="page-title">Your Cart</h2>
+
+    {% if cart_items %}
+    <table class="cart-table">
+        <thead>
+            <tr>
+                <th>Food</th>
+                <th>Quantity</th>
+                <th>Price (OMR)</th>
+                <th>Total (OMR)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+            <tr>
+                <td>{{ item.food.name }}</td>
+                <td>
+                    <form action="{% url 'update_cart' item.food.id %}" method="post" class="d-inline-flex align-items-center">
+                        {% csrf_token %}
+                        <input type="number" name="quantity" value="{{ item.quantity }}" min="0" class="quantity-input" required>
+                        <button type="submit" class="update-btn ms-2">Update</button>
+                    </form>
+                </td>
+                <td>{{ item.food.price|floatformat:2 }}</td>
+                <td>{{ item.total|floatformat:2 }}</td>
+                <td>
+                    <a href="{% url 'remove_from_cart' item.food.id %}" class="remove-btn">Remove</a>
+                </td>
+            </tr>
+            {% endfor %}
+            <tr class="table-total">
+                <td colspan="3" class="text-end fw-bold">Total Price:</td>
+                <td colspan="2" class="fw-bold">{{ total_price|floatformat:2 }} OMR</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="mt-4 text-center">
+        <a href="{% url 'menu' %}" class="add-btn me-3">Continue Shopping</a>
+        <a href="{% url 'checkout' %}" class="add-btn">Proceed to Checkout</a>
+    </div>
+
+    {% else %}
+    <p class="text-center">Your cart is empty.</p>
+    <div class="text-center mt-3">
+        <a href="{% url 'menu' %}" class="addd-btn">Browse Menu</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

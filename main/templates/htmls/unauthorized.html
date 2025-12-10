@@ -1,0 +1,7 @@
+{% extends 'htmls/base.html' %}
+
+{% block content %}
+<h2>Unauthorized Access</h2>
+<p>You do not have permission to view this page.</p>
+<a href="{% url 'home' %}" class="btn btn-primary mt-3">Return Home</a>
+{% endblock %}

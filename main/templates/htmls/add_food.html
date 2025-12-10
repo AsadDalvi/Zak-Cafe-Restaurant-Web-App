@@ -1,0 +1,25 @@
+{% extends 'htmls/base.html' %}
+
+{% block content %}
+<div class="add-food-container py-5">
+    <h2 class="add-food-title text-center mb-4">Add Food Item</h2>
+    <form method="post" enctype="multipart/form-data" class="add-food-form">
+        {% csrf_token %}
+        <div class="form-group mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" name="name" class="form-control add-food-input" required>
+        </div>
+        <div class="form-group mb-3">
+            <label class="form-label">Price</label>
+            <input type="number" name="price" class="form-control add-food-input" step="0.01" required>
+        </div>
+        <div class="form-group mb-3">
+            <label class="form-label">Image</label>
+            <input type="file" name="image" class="form-control add-food-input">
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn add-food-btn">Add Food</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

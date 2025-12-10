@@ -1,0 +1,70 @@
+{% extends 'htmls/base.html' %}
+{% load static %} 
+{% block content %}
+<div class="menu-container py-5">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <h2 class="page-title">Our Menu</h2>
+        <div>
+            <a href="{% url 'home' %}" class="btn home-btn me-2">🏠Back to Home</a>
+            <a href="{% url 'cart' %}" class="btn cart-btn">🛒Check Cart</a>
+        </div>
+    </div>
+
+    <!-- Search & Filters -->
+    <form method="get" class="row g-3 filter-bar mb-5">
+        <div class="col-md-4">
+            <input type="text" name="search" class="form-control filter-input" 
+                   placeholder="🔍 Search food..." value="{{ request.GET.search }}">
+        </div>
+        <div class="col-md-3">
+            <select name="category" class="form-select filter-select">
+                <option value="">All Categories</option>
+                <option value="drinks" {% if request.GET.category == 'drinks' %}selected{% endif %}>Drinks</option>
+                <option value="chicken" {% if request.GET.category == 'chicken' %}selected{% endif %}>Chicken</option>
+                <option value="beef" {% if request.GET.category == 'beef' %}selected{% endif %}>Beef</option>
+                <option value="dessert" {% if request.GET.category == 'dessert' %}selected{% endif %}>Desserts</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select name="price" class="form-select filter-select">
+                <option value="">Sort by Price</option>
+                <option value="asc" {% if request.GET.price == 'asc' %}selected{% endif %}>Low to High</option>
+                <option value="desc" {% if request.GET.price == 'desc' %}selected{% endif %}>High to Low</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn filter-btn w-100">Filter</button>
+        </div>
+    </form>
+
+    <!-- Menu Grid -->
+    <div class="row g-4">
+        {% for food in foods %}
+        <div class="col-6 col-lg-3">
+            <div class="card menu-card h-100">
+                {% if food.image %}
+                    <img src="{{ food.image.url }}" class="card-img-top menu-img" alt="{{ food.name }}">
+                {% else %}
+                    <img src="{% static 'images/default_food.png' %}" class="card-img-top menu-img" alt="No Image">
+                {% endif %}
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-center">{{ food.name }}</h5>
+                    <p class="card-text text-center fw-bold">{{ food.price }} OMR</p>
+                    <form action="{% url 'add_to_cart' food.id %}" method="post" class="mt-auto">
+                        {% csrf_token %}
+                        <div class="d-flex justify-content-between align-items-center">
+                            <input type="number" name="quantity" value="1" min="1" 
+                                   class="form-control qty-input">
+                            <button type="submit" class="btn add-btn">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center">No food items available yet.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'htmls/base.html' %}
+
+{% block content %}
+<div class="dashboard-container py-5">
+    <div class="dashboard-header">
+        <h2>👤 Customer Dashboard</h2>
+        <div class="dashboard-actions">
+            <a href="{% url 'home' %}" class="dash-btn secondary">🏠 Back to Home</a>
+            <a href="{% url 'logout' %}" class="dash-btn">🚪 Logout</a>
+        </div>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="dashboard-card">
+        <h4 class="section-title">Your Profile</h4>
+        <form method="post" class="profile-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="dash-btn">Update Profile</button>
+        </form>
+    </div>
+
+    <!-- Orders Section -->
+    <div class="dashboard-card">
+        <h4 class="section-title">Your Orders</h4>
+        {% if orders %}
+            <ul class="dashboard-list">
+                {% for order in orders %}
+                    <li class="dashboard-list-item">
+                        <div class="order-top">
+                            <span><strong>Order #{{ order.id }}</strong></span>
+                            <span class="order-status">{{ order.status }}</span>
+                        </div>
+                        <div class="order-body">
+                            <p>Total: <strong>{{ order.total_price }} OMR</strong></p>
+                            <ul class="order-items">
+                                {% for item in order.orderitem_set.all %}
+                                    <li>{{ item.food.name }} × {{ item.quantity }}</li>
+                                {% endfor %}
+                            </ul>
+                            <small class="order-date">Placed on {{ order.created_at|date:"d M Y h:i A" }}</small>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>You have no orders yet.</p>
+        {% endif %}
+    </div>
+
+    <!-- Feedback Section -->
+    <div class="dashboard-card">
+        <h4 class="section-title">Your Feedback</h4>
+        {% if feedbacks %}
+            <ul class="dashboard-list">
+                {% for fb in feedbacks %}
+                    <li class="dashboard-list-item">
+                        <p>{{ fb.message }}</p>
+                        <small class="feedback-date">Submitted on {{ fb.submitted_at|date:"d M Y h:i A" }}</small>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No feedback submitted yet.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'htmls/base.html' %}
+
+{% block content %}
+<div class="orders-container py-5">
+    <h2 class="orders-title text-center mb-4">All Orders</h2>
+
+    {% if orders %}
+    <div class="table-responsive">
+        <table class="orders-table">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Total Price (OMR)</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{% if order.customer %}{{ order.customer.username }}{% else %}Guest{% endif %}</td>
+                    <td>{{ order.total_price|floatformat:2 }}</td>
+                    <td>{{ order.status }}</td>
+                    <td>{{ order.created_at|date:"Y-m-d H:i:s" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="?download=csv" class="download-btn">Download Full Order Report CSV</a>
+    </div>
+
+    {% else %}
+    <p class="text-center">No orders available.</p>
+    {% endif %}
+</div>
+{% endblock %}

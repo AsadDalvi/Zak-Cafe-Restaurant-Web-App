@@ -1,0 +1,59 @@
+{% extends 'htmls/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="about-container my-5 text-center">
+
+    <!-- Page Title -->
+    <h1 class="about-title">About Zak Café</h1>
+
+    <!-- Short Intro -->
+    <div class="about-intro mt-4 px-3 px-md-5">
+        <p>
+            Zak Café is a locally owned café in Al Seeb, Oman, known for its cozy atmosphere 
+            and a variety of traditional and modern dishes. Our focus is on quality service, 
+            fresh ingredients, and providing a welcoming space for every guest. We now bring 
+            our café experience online, so you can enjoy your favorites from the comfort of home.
+        </p>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="contact-info mt-4">
+        <p><strong>Address:</strong> Al Seeb Beach, Muscat, Oman</p>
+        <p><strong>Phone:</strong> +968 9443 1288</p>
+        <p><strong> Restaurant Timings: </strong> <i>Open Everyday </i> | <strong> <i>3:00 PM - 1:00 AM </i></strong> </p>
+    </div>
+
+    <!-- Buttons -->
+    <div class="d-flex justify-content-center mt-4 flex-wrap gap-3">
+        <a href="{% url 'home' %}" class="btn btn-primary">Home</a>
+        <a href="{% url 'menu' %}" class="btn btn-primary">Order Now</a>
+    </div>
+
+<!-- Google Map Embed -->
+<div class="map-container mt-5 px-3 px-md-5">
+    <h4>Find us here:</h4>
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d868.1676405650355!2d58.15413829121506!3d23.695986625981707!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e8de587407b8649%3A0xcd1437e6719ab93c!2sTareq%20Al%20Falej%20Turkish%20food!5e1!3m2!1sen!2som!4v1755704098058!5m2!1sen!2som" 
+        width="100%" 
+        height="350" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+</div>
+
+
+    <!-- Feedback Form -->
+    <div class="feedback-form mt-5 px-3 px-md-5">
+        <h4>Send Us Feedback</h4>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary mt-2">Send Feedback</button>
+        </form>
+    </div>
+
+</div>
+{% endblock %}

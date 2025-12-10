@@ -1,0 +1,41 @@
+{% extends 'htmls/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="home-container text-center py-5">
+
+    <!-- Logo -->
+    <img src="{% static 'images/cafe-logo.png' %}" alt="Zak Café Logo" class="home-logo mb-3">
+
+    <!-- Welcome Message -->
+    <h1 class="home-title">Welcome to Zak Café</h1>
+    <p class="home-tagline">Your favorite café experience, now online.</p>
+
+    <!-- Short Intro for Home -->
+    <div class="home-intro mt-4 px-3 px-md-5">
+        <p>
+            Zak Café is a cozy, locally owned café in Al Seeb, Oman, offering a mix of traditional 
+            and modern dishes along with refreshing beverages. Enjoy a welcoming atmosphere 
+            and order your favorites online!
+        </p>
+    </div>
+
+    <!-- Action Buttons with short descriptions -->
+    <div class="mt-4 home-buttons">
+        <p class="btn-desc">Learn more about our story and what makes us special</p>
+        <a href="{% url 'about' %}" class="btn btn-primary">About Zak Café</a>
+
+        <p class="btn-desc mt-3">Explore our menu and order your favorite dishes</p>
+        <a href="{% url 'menu' %}" class="btn btn-primary">Order Now</a>
+    </div>
+
+    <!-- Social Media Section -->
+    <div class="mt-5">
+        <h3>Follow us on Instagram</h3>
+        <a href="https://instagram.com" target="_blank" rel="noopener" class="social-btn mt-2">
+            <i class="fab fa-instagram fa-lg"></i> @ZakCafe
+        </a>
+    </div>
+
+</div>
+{% endblock %}

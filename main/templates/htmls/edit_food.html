@@ -1,0 +1,30 @@
+{% extends 'htmls/base.html' %}
+
+{% block content %}
+<div class="edit-food-container py-5">
+    <h2 class="edit-food-title text-center mb-4">Edit Food Item</h2>
+    <form method="post" enctype="multipart/form-data" class="edit-food-form">
+        {% csrf_token %}
+        <div class="form-group mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" name="name" class="form-control edit-food-input" value="{{ food.name }}" required>
+        </div>
+        <div class="form-group mb-3">
+            <label class="form-label">Price</label>
+            <input type="number" name="price" class="form-control edit-food-input" value="{{ food.price }}" step="0.01" required>
+        </div>
+        <div class="form-group mb-3">
+            <label class="form-label">Image</label>
+            <input type="file" name="image" class="form-control edit-food-input">
+            {% if food.image %}
+            <div class="mt-2">
+                <img src="{{ food.image.url }}" width="80" class="edit-food-img">
+            </div>
+            {% endif %}
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn edit-food-btn">Update Food</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

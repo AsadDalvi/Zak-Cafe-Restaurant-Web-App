@@ -1,0 +1,77 @@
+{% extends 'htmls/base.html' %}
+
+{% block content %}
+<div class="checkout-container py-5">
+    <h2 class="checkout-title">Checkout</h2>
+
+    <form method="post" class="checkout-form">
+        {% csrf_token %}
+
+        <!-- Customer Details Form -->
+        <div class="customer-details">
+            <h4>Customer Information</h4>
+            {{ form.as_p }}
+        </div>
+
+        <!-- Payment Options -->
+        <div class="payment-section mt-4">
+            <h4>Payment Method</h4>
+            <div class="payment-options">
+                <label class="payment-label">
+                    <input type="radio" name="payment_method" value="cod" class="payment-radio"
+                        {% if selected_payment == 'cod' %}checked{% endif %}>
+                    Cash on Delivery
+                </label>
+                <label class="payment-label">
+                    <input type="radio" name="payment_method" value="card" class="payment-radio" disabled>
+                    Card Payment (Unavailable)
+                </label>
+                <p class="card-warning">*Card payment is currently unavailable. Please select Cash on Delivery.</p>
+            </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="order-summary mt-4">
+            <h4>Order Summary</h4>
+            {% if cart_items %}
+            <table class="checkout-table">
+                <thead>
+                    <tr>
+                        <th>Food</th>
+                        <th>Quantity</th>
+                        <th>Price (OMR)</th>
+                        <th>Total (OMR)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart_items %}
+                    <tr>
+                        <td>{{ item.food.name }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.food.price|floatformat:2 }}</td>
+                        <td>{{ item.total|floatformat:2 }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="3" class="fw-bold text-end">Delivery Charge:</td>
+                        <td class="fw-bold">{{ delivery_charge|floatformat:2 }} OMR</td>
+                    </tr>
+                    <tr class="checkout-total">
+                        <td colspan="3" class="fw-bold text-end">Grand Total:</td>
+                        <td class="fw-bold">{{ grand_total|floatformat:2 }} OMR</td>
+                    </tr>
+                </tbody>
+            </table>
+            {% else %}
+            <p>Your cart is empty.</p>
+            {% endif %}
+        </div>
+
+        <!-- Buttons -->
+        <div class="checkout-buttons mt-4">
+            <a href="{% url 'menu' %}" class="menu-btn">Go Back to Menu</a>
+            <button type="submit" class="place-order-btn">Place Order</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

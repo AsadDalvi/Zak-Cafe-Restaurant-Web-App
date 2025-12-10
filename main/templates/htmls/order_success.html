@@ -1,0 +1,18 @@
+{% extends 'htmls/base.html' %}
+
+{% block content %}
+<div class="order-success-container py-5">
+    <div class="order-success-box">
+        <h2 class="order-success-title">🎉 Thank You!</h2>
+        <p class="order-success-message">
+            Your order has been placed successfully.<br>
+            We will contact you soon.
+        </p>
+
+        <div class="order-success-buttons">
+            <a href="{% url 'menu' %}" class="success-btn">🍽 Back to Menu</a>
+            <a href="{% url 'home' %}" class="success-btn secondary">🏠 Back to Home</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

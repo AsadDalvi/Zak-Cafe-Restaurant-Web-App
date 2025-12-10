@@ -1,0 +1,39 @@
+{% extends 'htmls/base.html' %}
+
+{% block content %}
+<div class="feedback-container py-5">
+    <h2 class="feedback-title text-center mb-4">All Customer Feedbacks</h2>
+
+    {% if feedback_list %}
+    <div class="table-responsive">
+        <table class="feedback-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Message</th>
+                    <th>Date Submitted</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for feedback in feedback_list %}
+                <tr>
+                    <td>{{ feedback.name }}</td>
+                    <td>{{ feedback.email }}</td>
+                    <td>{{ feedback.message }}</td>
+                    <td>{{ feedback.submitted_at|date:"Y-m-d H:i" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center mt-4">
+        <a href="{% url 'download_feedback_report' %}" class="download-feedback-btn">
+            Download Full Feedback Report (CSV)
+        </a>
+    </div>
+    {% else %}
+    <p class="text-center">No feedback available yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

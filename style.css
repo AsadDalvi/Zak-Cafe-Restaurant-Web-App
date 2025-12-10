@@ -1,0 +1,1649 @@
+/* ===== General ===== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f3e5d0; 
+    color: black;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-size: 1.05rem; /* base size slightly bigger */
+}
+
+.container {
+    flex: 1;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+    background: linear-gradient(to right, black, red); /* smoother look */
+    padding: 1rem 1.2rem;
+}
+
+.navbar-brand {
+    font-size: 1.9rem; /* bigger */
+    font-weight: bold;
+    color: orange !important;
+    display: flex;
+    align-items: center;
+    text-shadow: 1px 1px 3px black; /* glow effect */
+}
+
+.navbar-brand img {
+    height: 75px; /* bigger */
+    width: 75px;
+    border-radius: 12px;
+    margin-right: 10px;
+}
+
+.navbar-nav .nav-link {
+    color: white !important;
+    margin-left: 18px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease-in-out;
+    border-radius: 8px;
+    padding: 8px 14px;
+}
+
+.navbar-nav .nav-link:hover {
+    background: linear-gradient(to right, orange, yellow);
+    color: black !important;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+}
+
+/* ===== Buttons ===== */
+button, .btn {
+    background: whitesmoke;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-size: 1.05rem;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.25);
+}
+
+button:hover, .btn:hover {
+    background: linear-gradient(to right, yellow, orange);
+    color: black;
+    transform: scale(1.05);
+}
+
+/* ===== Footer ===== */
+footer {
+    background: black;
+    color: white;
+    text-align: center;
+    padding: 1.2rem;
+    margin-top: auto;
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+    border-top: 3px solid red;
+}
+
+footer a {
+    color: white;
+    transition: color 0.3s, transform 0.3s;
+    font-size: 1.2rem;
+}
+
+footer a:hover {
+    color: yellow;
+    transform: scale(1.2);
+}
+
+/* ===== Chatbot Placeholder ===== */
+#chatbot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: white;
+    border: 2px solid black;
+    padding: 12px 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    max-width: 270px;
+    font-size: 1rem;
+    z-index: 1000;
+    border-left: 6px solid orange; /* stylish touch */
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.5rem;
+    }
+    .navbar-brand img {
+        height: 45px;
+        width: 45px;
+    }
+    .navbar-nav .nav-link {
+        margin-left: 0;
+        margin-top: 6px;
+        font-size: 1rem;
+    }
+    #chatbot {
+        right: 10px;
+        bottom: 10px;
+        max-width: 220px;
+        font-size: 0.9rem;
+    }
+}
+
+
+
+
+/* ===== Home Page ===== */
+.home-container {
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+    background: #f5e9da; /* card-like background */
+    padding: 60px 20px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.home-logo {
+    height: 170px;
+    width: 17s0px;
+    border-radius: 20px;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.home-title {
+    font-size: 3.5rem;
+    color: orange;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.home-tagline {
+    font-size: 1.5rem;
+    color: #4a4a4a;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.home-intro p {
+    font-size: 1.2rem;
+    color: #333;
+    line-height: 2;
+    margin-bottom: 2.5rem;
+}
+
+/* Action Buttons */
+.home-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.home-buttons .btn-desc {
+    font-size: 1.15rem;
+    color: #4a4a4a;
+    margin-bottom: 5px;
+    max-width: 400px;
+}
+
+/* Buttons */
+.btn-primary {
+    background: red;
+    color: white;
+    border-radius: 10px;
+    padding: 12px 28px;
+    font-size: 1.2rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background: #f5c22b; /* elegant soft yellow */
+    color: black;
+}
+
+
+/* Social Button */
+.social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.2rem;
+    color: black;
+    text-decoration: none;
+    background: orange;
+    padding: 10px 18px;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+.social-btn:hover {
+    background: red;
+    color: white;
+}
+
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .home-logo {
+        height: 130px;
+        width: 130px;
+    }
+    .home-title {
+        font-size: 2.5rem;
+    }
+    .home-tagline {
+        font-size: 1.2rem;
+    }
+    .home-intro p {
+        font-size: 1.05rem;
+    }
+    .btn-primary {
+        padding: 10px 30px;
+        font-size: 1rem;
+    }
+    .social-btn {
+        font-size: 1rem;
+    }
+    .home-buttons .btn-desc {
+        font-size: 1rem;
+        max-width: 300px;
+    }
+}
+
+
+
+/* ===== about us page with contact us ===== */
+.about-container {
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+    background: #f5e9da; /* card-like background */
+    padding: 60px 20px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.about-title {
+    font-size: 3.5rem;
+    color: orange !important;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.about-intro p {
+    font-size: 1.1rem;
+    color: #222;
+    line-height: 1.8;
+}
+
+.contact-info p {
+    font-size: 1.05rem;
+    color: black;
+    margin: 5px 0;
+}
+
+.map-container iframe {
+    border-radius: 12px;  /* round corners */
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* optional: makes it look lifted */
+}
+
+.feedback-form h4 {
+    font-size: 1.3rem;
+    color: orange;
+    margin-bottom: 10px;
+}
+
+.feedback-form form {
+    text-align: left;
+    max-width: 600px;
+    margin: auto;
+}
+
+.feedback-form button {
+    margin-top: 10px;
+}
+
+/* Reuse button styles from home.css */
+.btn-primary {
+    background: red;
+    color: white;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background: #ffb74d; /* soft orange hover */
+    color: black;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .about-title {
+        font-size: 2.2rem;
+    }
+    .about-intro p, .contact-info p {
+        font-size: 1rem;
+    }
+}
+
+
+
+
+/* ===== Login Page ===== */
+.login-form {
+    max-width: 400px;
+    margin: auto;
+}
+
+.login-form label {
+    font-weight: bold;
+    color: black;
+    font-style: italic;
+}
+
+.login-form .form-control {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+
+/* Links styled to match theme */
+.link-custom {
+    color: red;
+    font-weight: bold;
+    text-decoration: none;
+}
+.link-custom:hover {
+    color: orange;
+}
+
+
+
+
+/* Shared Auth Forms (Login & Register) */
+.auth-form {
+    max-width: 400px;
+    margin: auto;
+    text-align: left;
+}
+
+.auth-form label {
+    font-weight: bold;
+    color: black;
+    font-style: italic;
+}
+
+.auth-form .form-control {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: orange; /* same as home page title */
+    margin-bottom: 1.5rem;
+}
+
+
+
+/* ===== Menu Page ===== */
+.menu-container {
+    max-width: 1400px; /* wider container */
+    margin: 0 auto;
+    padding: 30px;
+}
+
+/* Title */
+.page-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: red;
+}
+
+/* Home Button */
+.home-btn {
+    background-color: black;
+    color: black;
+    border-radius: 8px;
+    padding: 8px 18px;
+    transition: 0.3s;
+}
+.home-btn:hover {
+    background-color: red;
+    color: black;
+}
+
+.cart-btn {
+    background-color: black;
+    color: white;
+    border-radius: 8px;
+    padding: 8px 18px;
+    transition: 0.3s;
+}
+
+.cart-btn:hover {
+    background-color: red;
+    color: white;
+}
+
+
+/* Filter Bar */
+.filter-bar {
+    background: #fff3e0; /* soft orange shade */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.filter-input,
+.filter-select {
+    border: 2px solid orange;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 1rem;
+}
+.filter-select {
+    background-color: white;
+    cursor: pointer;
+}
+.filter-btn {
+    background-color: red;
+    color: white;
+    border-radius: 8px;
+    padding: 10px;
+    font-weight: bold;
+}
+.filter-btn:hover {
+    background-color: orange;
+    color: black;
+}
+
+/* Food Cards */
+.menu-card {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease-in-out;
+}
+.menu-card:hover {
+    transform: translateY(-5px);
+}
+.menu-img {
+    border-radius: 12px;
+    height: 180px;
+    object-fit: cover;
+}
+.qty-input {
+    width: 60px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+.add-btn {
+    background-color: red;
+    color: white;
+    border-radius: 8px;
+    padding: 10px;
+    font-weight: bold;
+}
+.add-btn:hover {
+    background-color: orange;
+    color: black;
+}
+
+/* Custom grid for 5 per row */
+@media (min-width: 1200px) {
+    .col-lg-2-4 {
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+}
+
+/* 2 per row on smaller screens */
+@media (max-width: 768px) {
+    .col-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 768px) {
+    .d-flex.justify-content-between.align-items-center > div {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+    }
+
+    .home-btn, .cart-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .add-btn {
+        margin-left: 15%;
+    }
+}
+
+
+
+
+/* ===== Cart Page ===== */
+.cart-container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    background: #f5e9da;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.page-title {
+    font-size: 2.8rem;
+    color: orange;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Table Styling */
+.cart-table {
+    background: #f5e9da;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.cart-table th, .cart-table td {
+    vertical-align: middle;
+    text-align: center;
+    padding: 12px;
+}
+
+.cart-table tbody tr {
+    transition: background 0.3s ease;
+}
+
+.cart-table tbody tr:hover {
+    background: #f5e9da;
+}
+
+/* Quantity Input */
+.quantity-input {
+    width: 70px;
+    padding: 5px 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+/* Buttons Styling */
+.add-btn,
+.update-btn,
+.remove-btn {
+    background-color: red !important;
+    color: white !important;
+    border-radius: 8px;
+    padding: 10px 14px !important;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease-in-out;
+    border: none;
+}
+
+.add-btn:hover,
+.update-btn:hover,
+.remove-btn:hover {
+    background-color: orange !important;
+    color: black !important;
+}
+
+/* Total Row Highlight */
+.table-total {
+    background: #ffd699;
+    font-size: 1.1rem;
+    font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .cart-table th, .cart-table td {
+        font-size: 0.95rem;
+        padding: 8px;
+    }
+    .quantity-input {
+        width: 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cart-container {
+        padding: 10px;
+    }
+    .page-title {
+        font-size: 2rem;
+    }
+    .quantity-input {
+        width: 50px;
+    }
+    .cart-table th, .cart-table td {
+        font-size: 0.85rem;
+        padding: 6px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cart-container .mt-4.text-center a.add-btn {
+        display: inline-block;
+        width: auto;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 5%;
+        box-sizing: border-box;
+    }
+}
+
+/* Addd Button Styling */
+.addd-btn {
+    background-color: red;
+    color: white;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.addd-btn:hover {
+    background-color: orange;
+    color: black;
+}
+
+/* Small screen adjustment */
+@media (max-width: 768px) {
+    .text-center .addd-btn {
+        display: inline-block;
+        width: auto;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        margin-bottom: 5%;
+        box-sizing: border-box;
+    }
+}
+
+
+
+
+/* ===== Checkout Page ===== */
+.checkout-container {
+    max-width: 900px;
+    margin: auto;
+    padding: 25px;
+    background: #f5e9da; /* warm restaurant-style */
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.checkout-title {
+    text-align: center;
+    color: orange;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.checkout-form h4 {
+    color: black;
+    margin-bottom: 12px;
+}
+
+/* Payment Section */
+.payment-section {
+    background: #fff8f0;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.payment-label {
+    font-weight: bold;
+    color: black;
+    padding: 8px 12px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.payment-radio {
+    margin-right: 8px;
+}
+
+/* Highlight selected payment option */
+.payment-radio:checked + .payment-label,
+.payment-label input[type="radio"]:checked + & {
+    border-color: orange;
+    background-color: #fff0d9;
+}
+
+/* Disabled card payment style */
+.payment-label input[type="radio"]:disabled + & {
+    color: gray;
+    cursor: not-allowed;
+    background-color: #f9f5f0;
+}
+
+.card-warning {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* Order Summary Table */
+.checkout-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background: #fff8f0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.checkout-table th, .checkout-table td {
+    text-align: center;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.checkout-total {
+    background: #ffd699;
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* Buttons */
+.menu-btn, .place-order-btn {
+    background-color: red;
+    color: white;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.menu-btn:hover, .place-order-btn:hover {
+    background-color: orange;
+    color: black;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .checkout-container {
+        padding: 15px;
+    }
+    .checkout-title {
+        font-size: 2rem;
+    }
+    .checkout-table th, .checkout-table td {
+        font-size: 0.85rem;
+        padding: 6px;
+    }
+    .menu-btn, .place-order-btn {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+}
+
+
+
+
+/* -------- Order Success Page -------- */
+.order-success-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    padding: 20px;
+}
+
+.order-success-box {
+    background: #f5e9da;
+    color: black;
+    text-align: center;
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    max-width: 500px;
+    width: 100%;
+}
+
+.order-success-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: orange;
+    margin-bottom: 15px;
+}
+
+.order-success-message {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    line-height: 1.6;
+    color: black;
+}
+
+.order-success-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.success-btn {
+    background: orange;
+    color: white;
+    font-weight: bold;
+    padding: 12px 25px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.success-btn:hover {
+    background: orange;
+    color: black;
+}
+
+.success-btn.secondary {
+    background: orange;
+    color: white;
+}
+
+.success-btn.secondary:hover {
+    background: orange;
+    color: black;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .order-success-box {
+        padding: 25px 20px;
+    }
+
+    .order-success-title {
+        font-size: 1.6rem;
+    }
+
+    .success-btn {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+    }
+}
+
+
+
+
+
+/* -------- Customer Dashboard -------- */
+.dashboard-container {
+    max-width: 950px;
+    margin: auto;
+    padding: 20px;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 3px solid red;
+    padding-bottom: 10px;
+}
+
+.dashboard-header h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: orange;
+}
+
+.dashboard-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* Buttons */
+.dash-btn {
+    background: red;
+    color: white;
+    font-weight: bold;
+    padding: 10px 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+    font-size: 0.95rem;
+}
+
+.dash-btn:hover {
+    background: orange;
+    color: black;
+    transform: translateY(-2px);
+}
+
+.dash-btn.secondary {
+    background: orange;
+    color: black;
+}
+
+.dash-btn.secondary:hover {
+    background: red;
+    color: white;
+}
+
+/* Cards */
+.dashboard-card {
+    background: #f5e9da;
+    color: black;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border: 2px solid red;
+}
+
+.section-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: orange;
+}
+
+/* Profile Form */
+.profile-form p {
+    margin-bottom: 12px;
+}
+
+/* Lists */
+.dashboard-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dashboard-list-item {
+    background: #fff8f2;
+    color: black;
+    padding: 15px 18px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    border: 1px solid orange;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.order-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: black;
+}
+
+.order-status {
+    color: red;
+    font-weight: bold;
+}
+
+.order-body p {
+    margin: 5px 0;
+    font-size: 0.95rem;
+}
+
+.order-items {
+    list-style: disc;
+    padding-left: 20px;
+    margin: 8px 0;
+    font-size: 0.9rem;
+}
+
+.order-date,
+.feedback-date {
+    font-size: 0.8rem;
+    color: black;
+    opacity: 0.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .dashboard-actions {
+        width: 100%;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .dash-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+
+
+/* -------- Employee Dashboard CSS -------- */
+.employee-dashboard {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    color: black;
+    font-family: Arial, sans-serif;
+}
+
+.employee-dashboard h2 {
+    font-size: 2rem;
+    color: orange;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.employee-dashboard h4.section-title {
+    color: orange;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+/* Dashboard links */
+.dashboard-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.dashboard-links a {
+    background: #fff8f2;
+    color: black;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 2px solid orange;
+    transition: all 0.3s ease;
+}
+
+.dashboard-links a:hover {
+    background: orange;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.logout-btn {
+    background-color: red;
+}
+
+.home-btn {
+    background-color: yellow;
+}
+
+/* Buttons */
+.btn {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-success {
+    background-color: red;
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: orange;
+    color: black;
+}
+
+.btn-warning {
+    background-color: orange;
+    color: black;
+}
+
+.btn-warning:hover {
+    background-color: orange;
+    color: black;
+}
+
+.btn-danger {
+    background-color: red;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: orange;
+    color: black;
+}
+
+.btn-sm {
+    padding: 4px 10px;
+    font-size: 0.85rem;
+}
+
+/* Tables */
+.employee-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #fff8f2;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.employee-table th,
+.employee-table td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid orange;
+    color: black;
+}
+
+.employee-table th {
+    background-color: #ffd699;
+    font-weight: bold;
+}
+
+.employee-table tbody tr:hover {
+    background-color: #ffeacc;
+}
+
+/* Forms */
+.form-select,
+select {
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid orange;
+    font-size: 0.95rem;
+    margin-right: 5px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .dashboard-links {
+        flex-direction: column;
+    }
+
+    .employee-table th,
+    .employee-table td {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 6px;
+    }
+
+    .btn-sm {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .employee-dashboard {
+        padding: 10px;
+    }
+
+    .employee-table th,
+    .employee-table td {
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+
+    .dashboard-links a {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+
+/* ===== Orders Page ===== */
+.orders-container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    background: #f5e9da;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.orders-title {
+    font-size: 2.5rem;
+    color: orange;
+    font-weight: bold;
+}
+
+/* Orders Table Styling */
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.orders-table th, .orders-table td {
+    border: 1px solid #ffd699;
+    padding: 12px;
+    text-align: center;
+    color: black;
+}
+
+.orders-table thead {
+    background-color: orange;
+    color: white;
+    font-weight: bold;
+}
+
+.orders-table tbody tr:nth-child(even) {
+    background-color: #fff0d9;
+}
+
+.orders-table tbody tr:hover {
+    background-color: #ffd699;
+}
+
+/* CSV Download Button */
+.download-btn {
+    display: inline-block;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+}
+
+.download-btn:hover {
+    background-color: orange;
+    color: black;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .orders-table th, .orders-table td {
+        padding: 8px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .orders-container {
+        padding: 10px;
+    }
+    .orders-title {
+        font-size: 2rem;
+    }
+    .orders-table th, .orders-table td {
+        font-size: 0.85rem;
+        padding: 6px;
+    }
+    .download-btn {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+}
+
+
+
+
+
+/* ===== Feedback Page ===== */
+.feedback-container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    background: #f5e9da;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.feedback-title {
+    font-size: 2.5rem;
+    color: orange;
+    font-weight: bold;
+}
+
+/* Feedback Table Styling */
+.feedback-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.feedback-table th, .feedback-table td {
+    border: 1px solid #ffd699;
+    padding: 12px;
+    text-align: center;
+    color: black;
+}
+
+.feedback-table thead {
+    background-color: orange;
+    color: white;
+    font-weight: bold;
+}
+
+.feedback-table tbody tr:nth-child(even) {
+    background-color: #fff0d9;
+}
+
+.feedback-table tbody tr:hover {
+    background-color: #ffd699;
+}
+
+/* Download Button */
+.download-feedback-btn {
+    display: inline-block;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+}
+
+.download-feedback-btn:hover {
+    background-color: orange;
+    color: black;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .feedback-table th, .feedback-table td {
+        padding: 8px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .feedback-container {
+        padding: 10px;
+    }
+    .feedback-title {
+        font-size: 2rem;
+    }
+    .feedback-table th, .feedback-table td {
+        font-size: 0.85rem;
+        padding: 6px;
+    }
+    .download-feedback-btn {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+}
+
+
+
+
+
+/* ===== Add Food Page ===== */
+.add-food-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background: #f5e9da;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.add-food-title {
+    font-size: 2.5rem;
+    color: orange;
+    font-weight: bold;
+}
+
+.add-food-form .form-label {
+    font-weight: bold;
+    color: black;
+}
+
+.add-food-input {
+    border-radius: 8px;
+    border: 1px solid #ffd699;
+    padding: 10px;
+}
+
+.add-food-btn {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    padding: 10px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    border: none;
+}
+
+.add-food-btn:hover {
+    background-color: orange;
+    color: black;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .add-food-container {
+        padding: 15px;
+    }
+    .add-food-title {
+        font-size: 2rem;
+    }
+    .add-food-btn {
+        width: 90%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .add-food-input {
+        font-size: 0.95rem;
+    }
+}
+
+
+
+
+
+/* ===== Edit Food Page ===== */
+.edit-food-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background: #f5e9da;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.edit-food-title {
+    font-size: 2.5rem;
+    color: orange;
+    font-weight: bold;
+}
+
+.edit-food-form .form-label {
+    font-weight: bold;
+    color: black;
+}
+
+.edit-food-input {
+    border-radius: 8px;
+    border: 1px solid #ffd699;
+    padding: 10px;
+}
+
+.edit-food-img {
+    border-radius: 8px;
+    border: 1px solid #ffd699;
+}
+
+.edit-food-btn {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    padding: 10px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    border: none;
+}
+
+.edit-food-btn:hover {
+    background-color: orange;
+    color: black;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .edit-food-container {
+        padding: 15px;
+    }
+    .edit-food-title {
+        font-size: 2rem;
+    }
+    .edit-food-btn {
+        width: 90%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .edit-food-input {
+        font-size: 0.95rem;
+    }
+}
+
+
+
+
+
+#chatbot-icon {
+    position: fixed;
+    bottom: 30px; 
+    right: 30px; 
+    width: 70px; /* Increased icon size */
+    height: 70px;
+    background-color: transparent; 
+    border: 2px solid #5A3D29; 
+    border-radius: 15px; /* Rounded corners for square shape */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s ease-in-out;
+}
+
+/* Icon Image */
+#chatbot-icon img {
+    width: 50px; 
+    height: 50px;
+    border-radius: 15px; /* Rounded corners for image */
+}
+
+/* Hover effect on the icon - only scale, no color change */
+#chatbot-icon:hover {
+    transform: scale(1.1); 
+}
+
+#chatbot-icon:hover img {
+    filter: none; /* Remove brightness/invert effect */
+}
+
+/* Chatbot Popup to ask gather information about the company */
+#chatbot-container {
+    display: none;
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 350px;
+    height: 500px;
+    background-color: #F4F1E1;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    z-index: 9999; /* This will ensure to be on top of other content */
+}
+
+/* Chatbot Frame */
+#chatbot-frame {
+    width: 100%;
+    height: 90%;
+    border: none;
+    border-radius: 15px;
+}
+
+/* Close Button Styling */
+#chatbot-container button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #5A3D29; 
+    color: #F4F1E1; 
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+/* Button Hover Effect */
+#chatbot-container button:hover {
+    background-color: #F4F1E1; 
+    color: #5A3D29; 
+}
+
+#chatbot-container button:focus {
+    outline: none;
+}
+
+

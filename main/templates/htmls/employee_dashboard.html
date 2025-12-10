@@ -1,0 +1,158 @@
+{% extends 'htmls/base.html' %}
+{% load static %} 
+{% block content %}
+<div class="employee-dashboard">
+    <h2>Employee Dashboard</h2>
+    <p><i>Welcome, {{ request.user.username }}</i></p>
+
+    <!-- Dashboard Links -->
+    <div class="dashboard-links">
+        <a href="{% url 'order_reports' %}">View All Orders</a>
+        <a href="{% url 'download_order_report' %}" class="text-success">Download All Order Reports (CSV)</a>
+        <a href="{% url 'feedback_reports' %}">View All Feedbacks</a>
+        <a href="{% url 'download_feedback_report' %}" class="text-success">Download All Feedback Reports (CSV)</a>
+        <a href="{% url 'menu' %}">Manage Menu Items</a>
+        <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+        <a href="{% url 'home' %}" class="home-btn">Back to Home</a>
+    </div>
+
+    <!-- Food Management -->
+    <h4 class="section-title">Food Management</h4>
+    <a href="{% url 'add_food' %}" class="btn btn-success mb-3">Add New Food</a>
+    <table class="employee-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price (OMR)</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for food in foods %}
+            <tr>
+                <td>{{ food.name }}</td>
+                <td>{{ food.price }}</td>
+                <td>
+                    {% if food.image %}
+                        <img src="{{ food.image.url }}" alt="{{ food.name }}" width="80">
+                    {% else %}
+                        <img src="{% static 'images/default_food.png' %}" alt="No Image" width="80">
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'edit_food' food.id %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'delete_food' food.id %}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No food items available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Orders Section -->
+    <h4 class="section-title mt-4">Orders</h4>
+    <form method="get" class="mb-2">
+        <label>Filter Orders:</label>
+        <select name="order_filter" onchange="this.form.submit()">
+            <option value="all" {% if order_filter == 'all' %}selected{% endif %}>All</option>
+            <option value="24h" {% if order_filter == '24h' %}selected{% endif %}>Last 24 Hours</option>
+            <option value="3d" {% if order_filter == '3d' %}selected{% endif %}>Last 3 Days</option>
+            <option value="1w" {% if order_filter == '1w' %}selected{% endif %}>Last Week</option>
+            <option value="1m" {% if order_filter == '1m' %}selected{% endif %}>Last Month</option>
+            <option value="pending" {% if order_filter == 'pending' %}selected{% endif %}>Pending Only</option>
+        </select>
+    </form>
+
+    <table class="employee-table">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Total Price (OMR)</th>
+                <th>Status</th>
+                <th>Placed On</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{% if order.customer %}{{ order.customer.username }}{% else %}Guest{% endif %}</td>
+                <td>{% if order.status == 'Completed' %}{{ order.total_price }}{% else %}-{% endif %}</td>
+                <td>
+                    <form method="post" action="{% url 'update_order_status' order.id %}">
+                        {% csrf_token %}
+                        <select name="status" class="form-select form-select-sm">
+                            <option value="Pending" {% if order.status == "Pending" %}selected{% endif %}>Pending</option>
+                            <option value="Completed" {% if order.status == "Completed" %}selected{% endif %}>Completed</option>
+                            <option value="Cancelled" {% if order.status == "Cancelled" %}selected{% endif %}>Cancelled</option>
+                        </select>
+                        <button type="submit" class="btn btn-success btn-sm mt-1">Update</button>
+                    </form>
+                    <form method="post" action="{% url 'delete_order' order.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm mt-1" onclick="return confirm('Delete this order?');">Delete</button>
+                    </form>
+                </td>
+                <td>{{ order.created_at|date:"d M Y h:i A" }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">No orders found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p><strong>Total Received (Completed Orders):</strong> {{ total_received }} OMR</p>
+
+    <!-- Feedback Section -->
+    <h4 class="section-title mt-4">Feedback</h4>
+    <form method="get" class="mb-2">
+        <label>Filter Feedback:</label>
+        <select name="feedback_filter" onchange="this.form.submit()">
+            <option value="all" {% if feedback_filter == 'all' %}selected{% endif %}>All</option>
+            <option value="24h" {% if feedback_filter == '24h' %}selected{% endif %}>Last 24 Hours</option>
+            <option value="3d" {% if feedback_filter == '3d' %}selected{% endif %}>Last 3 Days</option>
+            <option value="1w" {% if feedback_filter == '1w' %}selected{% endif %}>Last Week</option>
+            <option value="1m" {% if feedback_filter == '1m' %}selected{% endif %}>Last Month</option>
+        </select>
+    </form>
+
+    <table class="employee-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Submitted On</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fb in feedbacks %}
+            <tr>
+                <td>{{ fb.name }}</td>
+                <td>{{ fb.email }}</td>
+                <td>{{ fb.message }}</td>
+                <td>{{ fb.submitted_at|date:"d M Y h:i A" }}</td>
+                <td>
+                    <form method="post" action="{% url 'delete_feedback' fb.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Delete this feedback?');">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No feedback found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
