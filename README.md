@@ -2,6 +2,9 @@
 
 A web application developed for a restaurant in Muscat, Oman, providing online ordering functionality along with an integrated AI chatbot to enhance customer interaction and support.
 
+## Link to access the web application
+- [Deployment Link will be provided soon]
+
 ## Technologies Used
 
 * Python
