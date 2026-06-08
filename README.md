@@ -1,6 +1,6 @@
-# Restaurant Web Application (Muscat, Oman)
+# Zak Cafe Restaurant Web Application
 
-A web application developed for a restaurant in Muscat, Oman, providing online ordering functionality along with an integrated AI chatbot to enhance customer interaction and support.
+A web application developed for a Zak Cafe restaurant in Muscat, Oman, providing online ordering functionality along with an integrated AI chatbot to enhance customer interaction and support.
 
 ## Link to access the web application
 - [Deployment Link will be provided soon]
